@@ -29,7 +29,7 @@ local function _6_(...)
   end
   ok_3f_21_auto, val_22_auto = pcall(_5_)
   if ok_3f_21_auto then
-    _1_["aniseed/local-fns"] = {}
+    _1_["aniseed/local-fns"] = {["require-macros"] = {["obluavim.utils.macros"] = true}}
     return val_22_auto
   else
     return print(val_22_auto)
@@ -38,14 +38,15 @@ end
 local _local_4_ = _6_(...)
 local _2amodule_2a = _1_
 local _2amodule_name_2a = "obluavim.main"
-do local _ = ({nil, _1_, nil, {{}, nil, nil, nil}})[2] end
+do local _ = ({nil, _1_, nil, {{nil}, nil, nil, nil}})[2] end
+vim.g.OBLTest = "hello"
 local init
 do
   local v_23_auto
   do
     local v_25_auto
     local function init0()
-      return print("Hello, World!")
+      return print(vim.g.OBLTest)
     end
     v_25_auto = init0
     _1_["init"] = v_25_auto
