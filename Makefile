@@ -11,7 +11,7 @@ compile:
 	deps/aniseed/scripts/compile.sh
 
 	# compile fennel directly with fennel compiler
-	fennel --compile ./ftplugin/obse.fnl >./ftplugin/obse.lua
+	./fennel --compile ./ftplugin/obse.fnl >./ftplugin/obse.lua
 
 	# Remove this if you only want Aniseed at compile time.
 	deps/aniseed/scripts/embed.sh aniseed obluavim
