@@ -158,8 +158,8 @@
 
 ; nnoremap
 (fn nno- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -182,7 +182,7 @@
 
 ; inoremap
 (fn ino- [left right ...]
-  (let [left (sym-tostring left)
+  (let [left left
         right right
         output []
         tab []]
@@ -206,8 +206,8 @@
 
 ; vnoremap
 (fn vno- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -230,8 +230,8 @@
 
 ; tnoremap
 (fn tno- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -254,8 +254,8 @@
 
 ; cnoremap
 (fn cno- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -302,8 +302,8 @@
 
 ; vmap
 (fn vm- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -326,8 +326,8 @@
 
 ; imap
 (fn im- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -350,8 +350,8 @@
 
 ; tmap
 (fn tm- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer
@@ -374,8 +374,8 @@
 
 ; cmap
 (fn cm- [left right ...]
-  (let [left (sym-tostring left)
-        right (sym-tostring right)
+  (let [left left
+        right right
         output []
         tab []]
     (var isBuffer false) ; so we don't have to specify not in a buffer

@@ -60,9 +60,9 @@ do
         if (_8_ == "n") then
           return vim.api.nvim_buf_set_keymap(0, "n", lhs0, rhs0, {noremap = false, nowait = true, silent = true})
         elseif (_8_ == "v") then
-          return vim.api.nvim_buf_set_keymap(0, "v", "lhs", "rhs", {noremap = false, nowait = true, silent = true})
+          return vim.api.nvim_buf_set_keymap(0, "v", lhs0, rhs0, {noremap = false, nowait = true, silent = true})
         elseif (_8_ == "i") then
-          return vim.api.nvim_buf_set_keymap(0, "i", "lhs", "rhs", {noremap = false, nowait = true, silent = true})
+          return vim.api.nvim_buf_set_keymap(0, "i", lhs0, rhs0, {noremap = false, nowait = true, silent = true})
         end
       end
     end
