@@ -53,36 +53,17 @@ do
   t_24_auto["api"] = v_23_auto
   api = v_23_auto
 end
-local getBufferName
-do
-  local v_23_auto
-  do
-    local v_25_auto
-    local function getBufferName0()
-      local bufName = api.nvim_buf_get_name(0)
-      return bufName
-    end
-    v_25_auto = getBufferName0
-    _1_["getBufferName"] = v_25_auto
-    v_23_auto = v_25_auto
-  end
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["getBufferName"] = v_23_auto
-  getBufferName = v_23_auto
-end
 local shortenFilename
 do
   local v_23_auto
   do
     local v_25_auto
     local function shortenFilename0()
-      local fileName = getBufferName()
-      local fileNameRegex = "%w+%.%w+$"
       local output
       do
         local v_23_auto0
         do
-          local v_25_auto0 = fileName:match(fileNameRegex)
+          local v_25_auto0 = core.expand("%:~:.")
           do end (_1_)["output"] = v_25_auto0
           v_23_auto0 = v_25_auto0
         end

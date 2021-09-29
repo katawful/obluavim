@@ -6,21 +6,16 @@
 (def- core vim.fn)
 (def- api vim.api)
 
-; Get the current name of buffer
-(defn getBufferName []
-  (let [bufName (api.nvim_buf_get_name 0)]
-    bufName))
-
-; Truncate full file path to just filename
+; Truncate full file path to just filename from cwd
+; This just uses expand from vim.fn
 (defn shortenFilename []
-  (let [fileName (getBufferName)
-        fileNameRegex :%w+%.%w+$]
-    (def output (fileName:match fileNameRegex))
-    output))
+  (def output (core.expand "%:~:."))
+  output)
 
 ; Get log file from buffer file name
 (defn getLogFile []
   (def- fileName (shortenFilename))
   (def- regexObject :%w+$)
+  ; sub the extension with the log file extension
   (def- output (: fileName :gsub (fileName:match regexObject) :log))
   output)
