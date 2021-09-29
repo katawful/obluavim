@@ -17,3 +17,10 @@
         fileNameRegex :%w+%.%w+$]
     (def output (fileName:match fileNameRegex))
     output))
+
+; Get log file from buffer file name
+(defn getLogFile []
+  (def- fileName (shortenFilename))
+  (def- regexObject :%w+$)
+  (def- output (: fileName :gsub (fileName:match regexObject) :log))
+  output)

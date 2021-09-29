@@ -100,4 +100,41 @@ do
   t_24_auto["shortenFilename"] = v_23_auto
   shortenFilename = v_23_auto
 end
+local getLogFile
+do
+  local v_23_auto
+  do
+    local v_25_auto
+    local function getLogFile0()
+      local fileName
+      do
+        local v_23_auto0 = shortenFilename()
+        local t_24_auto = (_1_)["aniseed/locals"]
+        t_24_auto["fileName"] = v_23_auto0
+        fileName = v_23_auto0
+      end
+      local regexObject
+      do
+        local v_23_auto0 = "%w+$"
+        local t_24_auto = (_1_)["aniseed/locals"]
+        t_24_auto["regexObject"] = v_23_auto0
+        regexObject = v_23_auto0
+      end
+      local output
+      do
+        local v_23_auto0 = fileName:gsub(fileName:match(regexObject), "log")
+        local t_24_auto = (_1_)["aniseed/locals"]
+        t_24_auto["output"] = v_23_auto0
+        output = v_23_auto0
+      end
+      return output
+    end
+    v_25_auto = getLogFile0
+    _1_["getLogFile"] = v_25_auto
+    v_23_auto = v_25_auto
+  end
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["getLogFile"] = v_23_auto
+  getLogFile = v_23_auto
+end
 return nil
