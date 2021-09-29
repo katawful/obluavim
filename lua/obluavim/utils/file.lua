@@ -70,4 +70,34 @@ do
   t_24_auto["getBufferName"] = v_23_auto
   getBufferName = v_23_auto
 end
+local shortenFilename
+do
+  local v_23_auto
+  do
+    local v_25_auto
+    local function shortenFilename0()
+      local fileName = getBufferName()
+      local fileNameRegex = "%w+%.%w+$"
+      local output
+      do
+        local v_23_auto0
+        do
+          local v_25_auto0 = fileName:match(fileNameRegex)
+          do end (_1_)["output"] = v_25_auto0
+          v_23_auto0 = v_25_auto0
+        end
+        local t_24_auto = (_1_)["aniseed/locals"]
+        t_24_auto["output"] = v_23_auto0
+        output = v_23_auto0
+      end
+      return output
+    end
+    v_25_auto = shortenFilename0
+    _1_["shortenFilename"] = v_25_auto
+    v_23_auto = v_25_auto
+  end
+  local t_24_auto = (_1_)["aniseed/locals"]
+  t_24_auto["shortenFilename"] = v_23_auto
+  shortenFilename = v_23_auto
+end
 return nil

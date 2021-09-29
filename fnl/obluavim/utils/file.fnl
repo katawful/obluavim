@@ -10,3 +10,10 @@
 (defn getBufferName []
   (let [bufName (api.nvim_buf_get_name 0)]
     bufName))
+
+; Truncate full file path to just filename
+(defn shortenFilename []
+  (let [fileName (getBufferName)
+        fileNameRegex :%w+%.%w+$]
+    (def output (fileName:match fileNameRegex))
+    output))
