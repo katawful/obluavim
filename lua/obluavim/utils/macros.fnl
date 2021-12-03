@@ -21,6 +21,7 @@
   (let [name (.. (sym-tostring name) " ")
         attributes attributes
         vimscript vimscript]
+    ; TODO - think about having bang be optional
     (var output "command! ")
     ; parse each value in the attribute table
     ; most are just true/false values so they don't need an argument

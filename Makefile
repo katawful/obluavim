@@ -1,6 +1,8 @@
-.PHONY: deps compile test
+.PHONY: deps compile
+# .PHONY: deps compile test
 
-default: deps compile test
+default: deps compile
+# default: deps compile test
 
 
 deps:

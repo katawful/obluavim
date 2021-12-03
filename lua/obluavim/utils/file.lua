@@ -1,121 +1,32 @@
 local _2afile_2a = "fnl/obluavim/utils/file.fnl"
-local _1_
-do
-  local name_4_auto = "obluavim.utils.file"
-  local module_5_auto
-  do
-    local x_6_auto = _G.package.loaded[name_4_auto]
-    if ("table" == type(x_6_auto)) then
-      module_5_auto = x_6_auto
-    else
-      module_5_auto = {}
-    end
-  end
-  module_5_auto["aniseed/module"] = name_4_auto
-  module_5_auto["aniseed/locals"] = ((module_5_auto)["aniseed/locals"] or {})
-  do end (module_5_auto)["aniseed/local-fns"] = ((module_5_auto)["aniseed/local-fns"] or {})
-  do end (_G.package.loaded)[name_4_auto] = module_5_auto
-  _1_ = module_5_auto
-end
-local autoload
-local function _3_(...)
-  return (require("obluavim.aniseed.autoload")).autoload(...)
-end
-autoload = _3_
-local function _6_(...)
-  local ok_3f_21_auto, val_22_auto = nil, nil
-  local function _5_()
-    return {}
-  end
-  ok_3f_21_auto, val_22_auto = pcall(_5_)
-  if ok_3f_21_auto then
-    _1_["aniseed/local-fns"] = {}
-    return val_22_auto
-  else
-    return print(val_22_auto)
-  end
-end
-local _local_4_ = _6_(...)
-local _2amodule_2a = _1_
 local _2amodule_name_2a = "obluavim.utils.file"
-do local _ = ({nil, _1_, nil, {{}, nil, nil, nil}})[2] end
-local core
+local _2amodule_2a
 do
-  local v_23_auto = vim.fn
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["core"] = v_23_auto
-  core = v_23_auto
+  package.loaded[_2amodule_name_2a] = {}
+  _2amodule_2a = package.loaded[_2amodule_name_2a]
 end
-local api
+local _2amodule_locals_2a
 do
-  local v_23_auto = vim.api
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["api"] = v_23_auto
-  api = v_23_auto
+  _2amodule_2a["aniseed/locals"] = {}
+  _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
-local shortenFilename
-do
-  local v_23_auto
-  do
-    local v_25_auto
-    local function shortenFilename0()
-      local output
-      do
-        local v_23_auto0
-        do
-          local v_25_auto0 = core.expand("%:~:.")
-          do end (_1_)["output"] = v_25_auto0
-          v_23_auto0 = v_25_auto0
-        end
-        local t_24_auto = (_1_)["aniseed/locals"]
-        t_24_auto["output"] = v_23_auto0
-        output = v_23_auto0
-      end
-      return output
-    end
-    v_25_auto = shortenFilename0
-    _1_["shortenFilename"] = v_25_auto
-    v_23_auto = v_25_auto
-  end
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["shortenFilename"] = v_23_auto
-  shortenFilename = v_23_auto
+local core = vim.fn
+_2amodule_locals_2a["core"] = core
+local api = vim.api
+_2amodule_locals_2a["api"] = api
+local function shortenFilename()
+  local output = core.expand("%:~:.")
+  do end (_2amodule_2a)["output"] = output
+  return output
 end
-local getLogFile
-do
-  local v_23_auto
-  do
-    local v_25_auto
-    local function getLogFile0()
-      local fileName
-      do
-        local v_23_auto0 = shortenFilename()
-        local t_24_auto = (_1_)["aniseed/locals"]
-        t_24_auto["fileName"] = v_23_auto0
-        fileName = v_23_auto0
-      end
-      local regexObject
-      do
-        local v_23_auto0 = "%w+$"
-        local t_24_auto = (_1_)["aniseed/locals"]
-        t_24_auto["regexObject"] = v_23_auto0
-        regexObject = v_23_auto0
-      end
-      local output
-      do
-        local v_23_auto0 = fileName:gsub(fileName:match(regexObject), "log")
-        local t_24_auto = (_1_)["aniseed/locals"]
-        t_24_auto["output"] = v_23_auto0
-        output = v_23_auto0
-      end
-      return output
-    end
-    v_25_auto = getLogFile0
-    _1_["getLogFile"] = v_25_auto
-    v_23_auto = v_25_auto
-  end
-  local t_24_auto = (_1_)["aniseed/locals"]
-  t_24_auto["getLogFile"] = v_23_auto
-  getLogFile = v_23_auto
+_2amodule_2a["shortenFilename"] = shortenFilename
+local function getLogFile()
+  local fileName = shortenFilename()
+  do end (_2amodule_locals_2a)["fileName"] = fileName
+  local regexObject = "%w+$"
+  _2amodule_locals_2a["regexObject"] = regexObject
+  local output = fileName:gsub(fileName:match(regexObject), "log")
+  do end (_2amodule_locals_2a)["output"] = output
+  return output
 end
-return nil
+_2amodule_2a["getLogFile"] = getLogFile
