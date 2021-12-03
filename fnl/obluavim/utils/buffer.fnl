@@ -49,7 +49,7 @@
 ; FN - Create a buffer of the log file while seeing if it exists
 (defn createLogBuffer []
   (local logFileName (files.getLogFile))
-  (local logName (modifyLogContents false :nil))
+  (local logFile (modifyLogContents false :nil))
   ;see if buffer already exists
   ; NOTE: this doesn't actually see if the *same* buffer exists
   (if (= (core.bufexists logFileName) 0)
@@ -57,7 +57,7 @@
       (def logBuffer (api.nvim_create_buf false true))
       ; (api.nvim_buf_set_name logBuffer (files.shortenFilename))
       (print "buf id is: " logBuffer)
-      (api.nvim_buf_set_lines logBuffer 0 -1 false logFileContents)
+      (api.nvim_buf_set_lines logBuffer 0 -1 false logFile)
       logBuffer)
     ; TODO error message function instead of just this
     (do

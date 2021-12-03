@@ -58,12 +58,12 @@ local function modifyLogContents(export, widthHeight)
 end
 local function createLogBuffer()
   local logFileName = files.getLogFile()
-  local logName = modifyLogContents(false, "nil")
+  local logFile = modifyLogContents(false, "nil")
   if (core.bufexists(logFileName) == 0) then
     local logBuffer = api.nvim_create_buf(false, true)
     do end (_2amodule_2a)["logBuffer"] = logBuffer
     print("buf id is: ", logBuffer)
-    api.nvim_buf_set_lines(logBuffer, 0, -1, false, logFileContents)
+    api.nvim_buf_set_lines(logBuffer, 0, -1, false, logFile)
     return logBuffer
   else
     return api.nvim_err_writeln("no log file")
