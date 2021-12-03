@@ -11,14 +11,16 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("obluavim.aniseed.autoload")).autoload
-local a, files, s = autoload("obluavim.aniseed.core"), autoload("obluavim.utils.file"), autoload("obluavim.aniseed.string")
+local a, files, maps, s = autoload("obluavim.aniseed.core"), autoload("obluavim.utils.file"), autoload("obluavim.utils.map"), autoload("obluavim.aniseed.string")
 do end (_2amodule_locals_2a)["a"] = a
 _2amodule_locals_2a["files"] = files
+_2amodule_locals_2a["maps"] = maps
 _2amodule_locals_2a["s"] = s
 local core = vim.fn
 _2amodule_locals_2a["core"] = core
 local api = vim.api
 _2amodule_locals_2a["api"] = api
+local logBuffer = ""
 local function modifyLogContents(export, widthHeight)
   local logFileName = files.getLogFile()
   local logFileContents = s.split(a.slurp(logFileName, true), "\n")
@@ -56,12 +58,13 @@ local function modifyLogContents(export, widthHeight)
     return nil
   end
 end
+_2amodule_2a["modifyLogContents"] = modifyLogContents
 local function createLogBuffer()
   local logFileName = files.getLogFile()
   local logFile = modifyLogContents(false, "nil")
   if (core.bufexists(logFileName) == 0) then
-    local logBuffer = api.nvim_create_buf(false, true)
-    do end (_2amodule_2a)["logBuffer"] = logBuffer
+    logBuffer = api.nvim_create_buf(false, true)
+    api.nvim_buf_set_name(logBuffer, logFileName)
     print("buf id is: ", logBuffer)
     api.nvim_buf_set_lines(logBuffer, 0, -1, false, logFile)
     return logBuffer
@@ -77,5 +80,10 @@ local function openLogWindow()
   do end (_2amodule_locals_2a)["localBuffer"] = localBuffer
   local localWindow = api.nvim_open_win(localBuffer, true, winOpts)
   do end (_2amodule_2a)["localWindow"] = localWindow
+  local chars = {"a", "b", "c", "d", "e", "f", "g", "i", "n", "o", "p", "r", "s", "t", "u", "v", "w", "x", "y", "z", "m", "q"}
+  for _, v in ipairs(chars) do
+    maps.createMapForce("n", v, "<cmd>:bdelete<CR>")
+  end
+  return nil
 end
 _2amodule_2a["openLogWindow"] = openLogWindow

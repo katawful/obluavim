@@ -1,5 +1,6 @@
 (module obluavim.utils.buffer
         {autoload {files obluavim.utils.file
+                   maps obluavim.utils.map
                    a aniseed.core
                    s aniseed.string
                    }})
@@ -9,6 +10,8 @@
 ; rename APIs
 (def- core vim.fn)
 (def- api vim.api)
+
+(var logBuffer "")
 
 ; FN - modify the log contents of the log file we acquire
 ; @export - boolean that tells if we export extra values or not
@@ -54,10 +57,12 @@
   ; NOTE: this doesn't actually see if the *same* buffer exists
   (if (= (core.bufexists logFileName) 0)
     (do
-      (def logBuffer (api.nvim_create_buf false true))
+      (set logBuffer (api.nvim_create_buf false true))
+      (api.nvim_buf_set_name logBuffer logFileName)
       ; (api.nvim_buf_set_name logBuffer (files.shortenFilename))
       (print "buf id is: " logBuffer)
       (api.nvim_buf_set_lines logBuffer 0 -1 false logFile)
+
       logBuffer)
     ; TODO error message function instead of just this
     (do
@@ -77,4 +82,12 @@
                  })
   (def- localBuffer (createLogBuffer))
   (def localWindow (api.nvim_open_win localBuffer true winOpts))
+
+  ; create maps for the log window, mostly just closes them all
+  (local chars {1 :a 2 :b 3 :c 4 :d 5 :e 6 :f 7 :g 8 :i 9 :n 10 :o 11 :p
+                12 :r 13 :s 14 :t 15 :u 16 :v 17 :w 18 :x 19 :y 20 :z
+                21 :m 22 :q
+                })
+  (each [_ v (ipairs chars)]
+    (maps.createMapForce :n v "<cmd>:bdelete<CR>"))
   )
