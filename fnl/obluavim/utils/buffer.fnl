@@ -11,9 +11,9 @@
 (def- api vim.api)
 
 ; FN - modify the log contents of the log file we acquire
-; @export - do we export any extra values
-; @widthHeight - export width or height
-(fn modifyLogContents [export widthHeight]
+; @export - boolean that tells if we export extra values or not
+; @widthHeight - string that tells if we export width or height
+(defn modifyLogContents [export widthHeight]
   (let [logFileName (files.getLogFile)
         ; slurp it up into a table
         logFileContents (s.split (a.slurp logFileName true) "\n")

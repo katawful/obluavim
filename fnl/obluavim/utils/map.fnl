@@ -6,8 +6,11 @@
 ; Rename some stuff
 (def- core vim.fn)
 
-; This function creates a remappable function for default mappings
-; NOTE: i took this idea from vimtex
+; FN - Create maps within functions
+; @mode - a character that defines what mode to use, n, i, v
+; @lhs - the left hand side of a keymap
+; @rhs - the right hand side of a keymap
+; @... - for map options
 (defn createMap [mode lhs rhs ...]
   (let [mode (tostring mode)
         lhs  (tostring lhs)

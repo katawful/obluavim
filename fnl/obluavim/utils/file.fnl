@@ -6,13 +6,12 @@
 (def- core vim.fn)
 (def- api vim.api)
 
-; Truncate full file path to just filename from cwd
-; This just uses expand from vim.fn
+; FN - Truncate the filename of the current file
 (defn shortenFilename []
   (def output (core.expand "%:~:."))
   output)
 
-; Get log file from buffer file name
+; FN - Get the log file of the current file
 (defn getLogFile []
   (def- fileName (shortenFilename))
   (def- regexObject :%w+$)
