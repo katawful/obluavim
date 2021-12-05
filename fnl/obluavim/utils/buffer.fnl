@@ -16,6 +16,9 @@
 ; FN - modify the log contents of the log file we acquire
 ; @export - boolean that tells if we export extra values or not
 ; @widthHeight - string that tells if we export width or height
+; $logFile - returns modified log contents
+; $logWidth - returns max width of log
+; $logHeight - returns total height of log
 (defn modifyLogContents [export widthHeight]
   (let [logFileName (files.getLogFile)
         ; slurp it up into a table
@@ -28,8 +31,7 @@
     ; parse through each line to modify it
     (each [key value (pairs logFileContents)]
       ; if empty it means end of line, don't add an empty line
-      (when (= value "")
-        (lua :break))
+      (when (= value "") (lua :break))
       ; trim out both sides
       (var tempString (s.trim value))
       ; trim out tabs
@@ -50,14 +52,16 @@
                :height (do logHeight))))))
 
 ; FN - Create a buffer of the log file while seeing if it exists
+; $logBuffer - returns a buffer of the log file, modified
 (defn createLogBuffer []
   (local logFileName (files.getLogFile))
   (local logFile (modifyLogContents false :nil))
-  ;see if buffer already exists
+  ; see if buffer already exists
   ; NOTE: this doesn't actually see if the *same* buffer exists
   (if (= (core.bufexists logFileName) 0)
     (do
       (set logBuffer (api.nvim_create_buf false true))
+      (api.nvim_buf_set_option logBuffer :filetype :ob_log)
       (api.nvim_buf_set_name logBuffer logFileName)
       ; (api.nvim_buf_set_name logBuffer (files.shortenFilename))
       (print "buf id is: " logBuffer)
@@ -72,16 +76,16 @@
 
 ; FN - Open a window of the log buffer
 (defn openLogWindow []
-  (def- winOpts {:relative :cursor
-                 :width (modifyLogContents true :width)
-                 :height (modifyLogContents true :height)
-                 :row 1
-                 :col 1
-                 :style :minimal
-                 :border :shadow
-                 })
-  (def- localBuffer (createLogBuffer))
-  (def localWindow (api.nvim_open_win localBuffer true winOpts))
+  (local winOpts {:relative :cursor
+                  :width (modifyLogContents true :width)
+                  :height (modifyLogContents true :height)
+                  :row 1
+                  :col 1
+                  :style :minimal
+                  :border :shadow
+                  })
+  (local localBuffer (createLogBuffer))
+  (local localWindow (api.nvim_open_win localBuffer true winOpts))
 
   ; create maps for the log window, mostly just closes them all
   (local chars {1 :a 2 :b 3 :c 4 :d 5 :e 6 :f 7 :g 8 :i 9 :n 10 :o 11 :p
@@ -89,5 +93,5 @@
                 21 :m 22 :q
                 })
   (each [_ v (ipairs chars)]
-    (maps.createMapForce :n v "<cmd>:bdelete<CR>"))
+    (maps.createMapForce :n v "<cmd>:bwipeout!<CR>"))
   )

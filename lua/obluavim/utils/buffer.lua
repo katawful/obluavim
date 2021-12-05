@@ -64,6 +64,7 @@ local function createLogBuffer()
   local logFile = modifyLogContents(false, "nil")
   if (core.bufexists(logFileName) == 0) then
     logBuffer = api.nvim_create_buf(false, true)
+    api.nvim_buf_set_option(logBuffer, "filetype", "ob_log")
     api.nvim_buf_set_name(logBuffer, logFileName)
     print("buf id is: ", logBuffer)
     api.nvim_buf_set_lines(logBuffer, 0, -1, false, logFile)
@@ -75,14 +76,11 @@ end
 _2amodule_2a["createLogBuffer"] = createLogBuffer
 local function openLogWindow()
   local winOpts = {relative = "cursor", width = modifyLogContents(true, "width"), height = modifyLogContents(true, "height"), row = 1, col = 1, style = "minimal", border = "shadow"}
-  _2amodule_locals_2a["winOpts"] = winOpts
   local localBuffer = createLogBuffer()
-  do end (_2amodule_locals_2a)["localBuffer"] = localBuffer
   local localWindow = api.nvim_open_win(localBuffer, true, winOpts)
-  do end (_2amodule_2a)["localWindow"] = localWindow
   local chars = {"a", "b", "c", "d", "e", "f", "g", "i", "n", "o", "p", "r", "s", "t", "u", "v", "w", "x", "y", "z", "m", "q"}
   for _, v in ipairs(chars) do
-    maps.createMapForce("n", v, "<cmd>:bdelete<CR>")
+    maps.createMapForce("n", v, "<cmd>:bwipeout!<CR>")
   end
   return nil
 end

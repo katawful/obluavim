@@ -7,11 +7,13 @@
 (def- api vim.api)
 
 ; FN - Truncate the filename of the current file
+; $output - returns truncated filename
 (defn shortenFilename []
   (def output (core.expand "%:~:."))
   output)
 
 ; FN - Get the log file of the current file
+; $output - returns log file of the current filename
 (defn getLogFile []
   (def- fileName (shortenFilename))
   (def- regexObject :%w+$)
