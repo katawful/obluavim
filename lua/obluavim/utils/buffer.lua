@@ -11,11 +11,12 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("obluavim.aniseed.autoload")).autoload
-local a, files, maps, s = autoload("obluavim.aniseed.core"), autoload("obluavim.utils.file"), autoload("obluavim.utils.map"), autoload("obluavim.aniseed.string")
+local a, files, maps, s, utils = autoload("obluavim.aniseed.core"), autoload("obluavim.utils.file"), autoload("obluavim.utils.map"), autoload("obluavim.aniseed.string"), autoload("obluavim.utils.util")
 do end (_2amodule_locals_2a)["a"] = a
 _2amodule_locals_2a["files"] = files
 _2amodule_locals_2a["maps"] = maps
 _2amodule_locals_2a["s"] = s
+_2amodule_locals_2a["utils"] = utils
 local core = vim.fn
 _2amodule_locals_2a["core"] = core
 local api = vim.api
@@ -75,13 +76,13 @@ local function createLogBuffer()
 end
 _2amodule_2a["createLogBuffer"] = createLogBuffer
 local function openLogWindow()
-  local winOpts = {relative = "cursor", width = modifyLogContents(true, "width"), height = modifyLogContents(true, "height"), row = 1, col = 1, style = "minimal", border = "shadow"}
+  local winOpts = {relative = "cursor", width = utils.capFloatWidth(modifyLogContents(true, "width")), height = utils.capFloatHeight(modifyLogContents(true, "height")), row = 1, col = 1, style = "minimal", border = "shadow"}
   local localBuffer = createLogBuffer()
   local localWindow = api.nvim_open_win(localBuffer, true, winOpts)
   local chars = {"a", "b", "c", "d", "e", "f", "g", "i", "n", "o", "p", "r", "s", "t", "u", "v", "w", "x", "y", "z", "m", "q"}
   for _, v in ipairs(chars) do
     maps.createMapForce("n", v, "<cmd>:bwipeout!<CR>")
   end
-  return nil
+  return localWindow
 end
 _2amodule_2a["openLogWindow"] = openLogWindow

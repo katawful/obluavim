@@ -1,6 +1,7 @@
 (module obluavim.utils.buffer
         {autoload {files obluavim.utils.file
                    maps obluavim.utils.map
+                   utils obluavim.utils.util
                    a aniseed.core
                    s aniseed.string
                    }})
@@ -75,10 +76,11 @@
   )
 
 ; FN - Open a window of the log buffer
+; $localWindow - returns the window id for the created window
 (defn openLogWindow []
   (local winOpts {:relative :cursor
-                  :width (modifyLogContents true :width)
-                  :height (modifyLogContents true :height)
+                  :width (utils.capFloatWidth (modifyLogContents true :width))
+                  :height (utils.capFloatHeight (modifyLogContents true :height))
                   :row 1
                   :col 1
                   :style :minimal
@@ -94,4 +96,5 @@
                 })
   (each [_ v (ipairs chars)]
     (maps.createMapForce :n v "<cmd>:bwipeout!<CR>"))
+  localWindow
   )
