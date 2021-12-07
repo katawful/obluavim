@@ -1,15 +1,15 @@
-.PHONY: deps compile
-# .PHONY: deps compile test
+# .PHONY: deps compile
+.PHONY: deps compile test
 
-default: deps compile
-# default: deps compile test
+# default: deps compile
+default: deps compile test
 
 
 deps:
 	scripts/dep.sh Olical aniseed origin/master
 
 compile:
-	rm -rf lua
+	# rm -rf lua
 	deps/aniseed/scripts/compile.sh
 
 	# compile fennel directly with fennel compiler
@@ -19,5 +19,5 @@ compile:
 	deps/aniseed/scripts/embed.sh aniseed obluavim
 
 test:
-	rm -rf test/lua
+	# rm -rf test/lua
 	deps/aniseed/scripts/test.sh
