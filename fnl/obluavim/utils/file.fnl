@@ -9,14 +9,14 @@
 ; FN - Truncate the filename of the current file
 ; $output - returns truncated filename
 (defn shortenFilename []
-  (def output (core.expand "%:~:."))
+  (local output (core.expand "%:~:."))
   output)
 
 ; FN - Get the log file of the current file
 ; $output - returns log file of the current filename
 (defn getLogFile []
-  (def- fileName (shortenFilename))
-  (def- regexObject :%w+$)
+  (local fileName (shortenFilename))
+  (local regexObject :%w+$)
   ; sub the extension with the log file extension
-  (def- output (: fileName :gsub (fileName:match regexObject) :log))
+  (local output (: fileName :gsub (fileName:match regexObject) :log))
   output)

@@ -20,7 +20,7 @@ _2amodule_locals_2a["g"] = g
 g.obluavimFileExt = {"obl", "oblivion"}
 local function init()
   do
-    vim.api.nvim_command("command! -nargs=0 -buffer ObluavimShowLog lua require('obluavim.utils.buffer').openLogWindow()")
+    vim.api.nvim_command("command! -nargs=0 -buffer ObluavimShowLog lua require('obluavim.utils.diagnostics').genDiagnostics()")
   end
   maps.createMap("n", "<LocalLeader>s", "<CMD>ObluavimShowLog<CR>")
   return files.getLogFile()

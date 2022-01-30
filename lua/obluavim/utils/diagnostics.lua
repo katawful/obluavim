@@ -65,7 +65,7 @@ end
 _2amodule_2a["matchDiagnostic"] = matchDiagnostic
 local function genDiagnostics()
   local logFileName = files.getLogFile()
-  local logFileContents = s.split(a.slurp(logFileName, true), "\n")
+  local logFileContents = s.split(a.slurp(logFileName, false), "\n")
   local matchPattern = "%[(%w)%] Line (%d+) (.+)"
   local severityType = {I = diag.severity.INFO, W = diag.severity.WARN, E = diag.severity.ERROR}
   local groups = {"severity", "lnum", "message"}

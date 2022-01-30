@@ -41,8 +41,7 @@
               (when (= messageMatched message)
                 (each [quoteMatched (: messageMatched :gmatch quotedPattern) :until (= foundMatch true)]
                   (if (not= lastLine matched)
-                    (do
-                      ; set the columns
+                    (do ; set the columns
                       (set-forcibly! (startCol endCol) (string.find (. currentLine 1) quoteMatched))
                       (set foundMatch true)
                       ; if this is nil (ie the log isn't updated), just reset this
@@ -53,7 +52,7 @@
 ; FN - generate diagnostics table
 (defn genDiagnostics []
   (let [logFileName (files.getLogFile)
-        logFileContents (s.split (a.slurp logFileName true) "\n")
+        logFileContents (s.split (a.slurp logFileName false) "\n")
         matchPattern "%[(%w)%] Line (%d+) (.+)"
         severityType {:I diag.severity.INFO
                       :W diag.severity.WARN

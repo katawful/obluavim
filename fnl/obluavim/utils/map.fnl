@@ -15,11 +15,11 @@
   (let [mode (tostring mode)
         lhs  lhs
         rhs  rhs]
-    (if 
+    (if
       ; if we don't already have a map to right hand
       (and (= (core.hasmapto rhs mode) 0)
           ; and if lhs isn't mapped already
-          (> (core.empty (core.maparg lhs mode)) 0))
+           (> (core.empty (core.maparg lhs mode)) 0))
       (do
         (match mode
           :n (do

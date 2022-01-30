@@ -16,7 +16,7 @@
 (defn init []
   (command- ObluavimShowLog {:nargs 0
                              :buffer true
-                             } "lua require('obluavim.utils.buffer').openLogWindow()")
+                             } "lua require('obluavim.utils.diagnostics').genDiagnostics()")
   ; show map default log
   (maps.createMap :n :<LocalLeader>s :<CMD>ObluavimShowLog<CR>)
   (files.getLogFile))
