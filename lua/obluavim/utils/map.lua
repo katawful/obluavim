@@ -14,7 +14,7 @@ local _ = nil
 _2amodule_locals_2a["_"] = _
 local core = vim.fn
 _2amodule_locals_2a["core"] = core
-local function createMap(mode, lhs, rhs, ...)
+local function create(mode, lhs, rhs, ...)
   local mode0 = tostring(mode)
   local lhs0 = lhs
   local rhs0 = rhs
@@ -33,8 +33,8 @@ local function createMap(mode, lhs, rhs, ...)
     return nil
   end
 end
-_2amodule_2a["createMap"] = createMap
-local function createMapForce(mode, lhs, rhs, ...)
+_2amodule_2a["create"] = create
+local function create_force(mode, lhs, rhs, ...)
   local mode0 = tostring(mode)
   local lhs0 = lhs
   local rhs0 = rhs
@@ -49,4 +49,5 @@ local function createMapForce(mode, lhs, rhs, ...)
     return nil
   end
 end
-_2amodule_2a["createMapForce"] = createMapForce
+_2amodule_2a["create-force"] = create_force
+return _2amodule_2a

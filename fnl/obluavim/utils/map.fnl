@@ -11,7 +11,8 @@
 ; @lhs - the left hand side of a keymap
 ; @rhs - the right hand side of a keymap
 ; @... - for map options
-(defn createMap [mode lhs rhs ...]
+(defn create [mode lhs rhs ...]
+  "create a map for this plugin, not overwriting if possible"
   (let [mode (tostring mode)
         lhs  lhs
         rhs  rhs]
@@ -35,7 +36,8 @@
 ; @lhs - the left hand side of a keymap
 ; @rhs - the right hand side of a keymap
 ; @... - for map options
-(defn createMapForce [mode lhs rhs ...]
+(defn create-force [mode lhs rhs ...]
+  "force create a map for this plugin, overwrite with noremap"
   (let [mode (tostring mode)
         lhs  lhs
         rhs  rhs]

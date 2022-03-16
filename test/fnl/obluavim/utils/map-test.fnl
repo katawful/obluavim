@@ -1,14 +1,14 @@
 (module obluavim.utils.map-test
-        {autoload {maps obluavim.utils.map}})
+        {autoload {map obluavim.utils.map}})
 
 ; this module tests obluavim.utils.map file
 
-(deftest createMap
+(deftest create
   (t.pr= (vim.api.nvim_buf_set_keymap 0 :n :a :b {:noremap false :nowait true :silent true}) 
-         (maps.createMap :n :a :b)) 
+         (map.create :n :a :b)) 
   "creates remappable map in mode 'l' of lhs 'a' and rhs 'b'")
 
-(deftest createMapForce
+(deftest create
   (t.pr= (vim.api.nvim_buf_set_keymap 0 :n :a :b {:noremap false :nowait true :silent true}) 
-         (maps.createMap :n :a :b)) 
+         (map.create-force :n :a :b)) 
   "creates remappable map in mode 'l' of lhs 'a' and rhs 'b'")

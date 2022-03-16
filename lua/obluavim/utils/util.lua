@@ -34,3 +34,4 @@ local function capFloatHeight(inputHeight)
   return outputHeight
 end
 _2amodule_2a["capFloatHeight"] = capFloatHeight
+return _2amodule_2a

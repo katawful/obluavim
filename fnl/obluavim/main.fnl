@@ -1,22 +1,22 @@
 (module obluavim.main
         {require-macros [obluavim.utils.macros]
-         autoload {maps obluavim.utils.map
-                   files obluavim.utils.file
-                   }
-         })
+         autoload {map obluavim.utils.map
+                   file obluavim.utils.file.init
+                   watch obluavim.utils.file.watch
+                   diag obluavim.utils.diagnostics.init}})
 
 ; Remap vim.g and others to something a touch more sensible
 (def- g vim.g)
 
 ; Define global variables here:
 (set g.obluavimFileExt {1 :obl
-                        2 :oblivion
-                        })
+                        2 :oblivion})
 
 (defn init []
-  (command- ObluavimShowLog {:nargs 0
-                             :buffer true
-                             } "lua require('obluavim.utils.diagnostics').genDiagnostics()")
+  (command- ObluavimGenDiags {:nargs 0
+                                   :buffer true}
+                            "lua require('obluavim.utils.diagnostics.init').generate()")
   ; show map default log
-  (maps.createMap :n :<LocalLeader>s :<CMD>ObluavimShowLog<CR>)
-  (files.getLogFile))
+  (map.create :n :<LocalLeader>s :<CMD>ObluavimGenDiags<CR>)
+  (diag.generate)
+  (watch.log))

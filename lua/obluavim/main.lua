@@ -11,18 +11,22 @@ do
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
 local autoload = (require("obluavim.aniseed.autoload")).autoload
-local files, maps, _ = autoload("obluavim.utils.file"), autoload("obluavim.utils.map"), nil
-_2amodule_locals_2a["files"] = files
-_2amodule_locals_2a["maps"] = maps
+local diag, file, map, watch, _ = autoload("obluavim.utils.diagnostics.init"), autoload("obluavim.utils.file.init"), autoload("obluavim.utils.map"), autoload("obluavim.utils.file.watch"), nil
+_2amodule_locals_2a["diag"] = diag
+_2amodule_locals_2a["file"] = file
+_2amodule_locals_2a["map"] = map
+_2amodule_locals_2a["watch"] = watch
 _2amodule_locals_2a["_"] = _
 local g = vim.g
 _2amodule_locals_2a["g"] = g
 g.obluavimFileExt = {"obl", "oblivion"}
 local function init()
   do
-    vim.api.nvim_command("command! -nargs=0 -buffer ObluavimShowLog lua require('obluavim.utils.diagnostics').genDiagnostics()")
+    vim.api.nvim_command("command! -nargs=0 -buffer ObluavimGenDiags lua require('obluavim.utils.diagnostics.init').generate()")
   end
-  maps.createMap("n", "<LocalLeader>s", "<CMD>ObluavimShowLog<CR>")
-  return files.getLogFile()
+  map.create("n", "<LocalLeader>s", "<CMD>ObluavimGenDiags<CR>")
+  diag.generate()
+  return watch.log()
 end
 _2amodule_2a["init"] = init
+return _2amodule_2a
