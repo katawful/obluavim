@@ -23,4 +23,8 @@ local function short_name()
   return output
 end
 _2amodule_2a["short-name"] = short_name
+local function extension()
+  return core.expand("%:e")
+end
+_2amodule_2a["extension"] = extension
 return _2amodule_2a

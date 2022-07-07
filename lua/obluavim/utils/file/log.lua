@@ -14,10 +14,8 @@ local autoload = (require("obluavim.aniseed.autoload")).autoload
 local file = autoload("obluavim.utils.file.init")
 do end (_2amodule_locals_2a)["file"] = file
 local function get()
-  local fileName = file["short-name"]()
-  local regexObject = "%w+$"
-  local output = fileName:gsub(fileName:match(regexObject), "log")
-  return output
+  local file_name = file["short-name"]()
+  return file_name:gsub(("%." .. file.extension()), ".log")
 end
 _2amodule_2a["get"] = get
 return _2amodule_2a

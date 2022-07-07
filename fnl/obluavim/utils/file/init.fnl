@@ -15,3 +15,6 @@
 (defn short-name []
   (local output (core.expand "%:~:."))
   output)
+
+(defn extension []
+  (core.expand "%:e"))
