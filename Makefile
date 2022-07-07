@@ -17,8 +17,7 @@ compile:
 	# Remove this if you only want Aniseed at compile time.
 	deps/aniseed/scripts/embed.sh aniseed obluavim
 	deps/aniseed/scripts/embed.sh katcros-fnl obluavim
-	deps/aniseed/scripts/embed.sh aniseed obluavim
-
+	ANISEED_EMBED_PREFIX=obluavim deps/aniseed/scripts/compile.sh
 test:
 	# rm -rf test/lua
 	deps/aniseed/scripts/test.sh
