@@ -1,5 +1,5 @@
 (module obluavim.utils.map
-        {require-macros [obluavim.utils.macros]})
+        {require-macros [katcros-fnl.macros.nvim.api.maps.macros]})
 
 ; This contains the functions related to default mappings
 
@@ -24,12 +24,17 @@
       (do
         (match mode
           :n (do
-               (nm- lhs rhs :silent :buffer :nowait))
+               (nm- lhs rhs {:silent true
+                             :buffer true
+                             :nowait true}))
           :v (do
-               (vm- lhs rhs :silent :buffer :nowait))
+               (vm- lhs rhs {:silent true
+                             :buffer true
+                             :nowait true}))
           :i (do
-               (im- lhs rhs :silent :buffer :nowait))
-          )))))
+               (im- lhs rhs {:silent true
+                             :buffer true
+                             :nowait true})))))))
 
 ; FN - Force create maps within functions
 ; @mode - a character that defines what mode to use, n, i, v
@@ -43,9 +48,14 @@
         rhs  rhs]
     (match mode
       :n (do
-           (nm- lhs rhs :silent :buffer :nowait))
+           (nm- lhs rhs {:silent true
+                         :buffer true
+                         :nowait true}))
       :v (do
-           (vm- lhs rhs :silent :buffer :nowait))
+           (vm- lhs rhs {:silent true
+                         :buffer true
+                         :nowait true}))
       :i (do
-           (im- lhs rhs :silent :buffer :nowait))
-      )))
+           (im- lhs rhs {:silent true
+                         :buffer true
+                         :nowait true})))))
