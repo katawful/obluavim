@@ -10,7 +10,7 @@ do
   _2amodule_2a["aniseed/locals"] = {}
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
-local autoload = (require("obluavim.aniseed.autoload")).autoload
+local autoload = (require("aniseed.autoload")).autoload
 local file = autoload("obluavim.utils.file.init")
 do end (_2amodule_locals_2a)["file"] = file
 local function get()

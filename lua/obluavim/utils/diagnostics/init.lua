@@ -10,8 +10,8 @@ do
   _2amodule_2a["aniseed/locals"] = {}
   _2amodule_locals_2a = (_2amodule_2a)["aniseed/locals"]
 end
-local autoload = (require("obluavim.aniseed.autoload")).autoload
-local a, file, ob_log, s, watch = autoload("obluavim.aniseed.core"), autoload("obluavim.utils.file.init"), autoload("obluavim.utils.file.log"), autoload("obluavim.aniseed.string"), autoload("obluavim.utils.file.watch")
+local autoload = (require("aniseed.autoload")).autoload
+local a, file, ob_log, s, watch = autoload("aniseed.core"), autoload("obluavim.utils.file.init"), autoload("obluavim.utils.file.log"), autoload("aniseed.string"), autoload("obluavim.utils.file.watch")
 do end (_2amodule_locals_2a)["a"] = a
 _2amodule_locals_2a["file"] = file
 _2amodule_locals_2a["ob-log"] = ob_log
