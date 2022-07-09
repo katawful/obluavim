@@ -12,14 +12,10 @@
 
 ; FN - Truncate the filename of the current file
 ; $output - returns truncated filename
-(defn short-name []
-  (local output (core.expand "%:~:."))
-  output)
+(defn short-name [] (local output (core.expand "%:~:.")) output)
 
 ;; FN -- full path name
-(defn name []
-  (core.expand "%:p"))
+(defn name [] (core.expand "%:p"))
 
 ;; FN -- raw file extension
-(defn extension []
-  (core.expand "%:e"))
+(defn extension [] (core.expand "%:e"))
