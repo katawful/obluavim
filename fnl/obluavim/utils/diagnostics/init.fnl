@@ -52,9 +52,11 @@
 ; FN - generate diagnostics table
 (defn generate []
   (local logFileName (ob-log.get))
-  (local is-log-avail (a.slurp logFileName true))
+  (local is-log-avail (if logFileName
+                        (a.slurp logFileName true)
+                        nil))
   ; make sure log is available
-  (when (not= is-log-avail nil)
+  (when is-log-avail
     (let [logFileContents (s.split (a.slurp logFileName false) "\n")
           matchPattern "%[(%w)%] Line (%d+) (.+)"
           severityType {:I diag.severity.INFO

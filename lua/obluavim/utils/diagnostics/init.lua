@@ -66,8 +66,13 @@ end
 _2amodule_2a["find"] = find
 local function generate()
   local logFileName = ob_log.get()
-  local is_log_avail = a.slurp(logFileName, true)
-  if (is_log_avail ~= nil) then
+  local is_log_avail
+  if logFileName then
+    is_log_avail = a.slurp(logFileName, true)
+  else
+    is_log_avail = nil
+  end
+  if is_log_avail then
     local logFileContents = s.split(a.slurp(logFileName, false), "\n")
     local matchPattern = "%[(%w)%] Line (%d+) (.+)"
     local severityType = {I = diag.severity.INFO, W = diag.severity.WARN, E = diag.severity.ERROR}
