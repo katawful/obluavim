@@ -4,6 +4,8 @@
 # default: deps compile
 default: deps compile test
 
+format:
+	scripts/fnlfmt.sh
 
 deps:
 	deps/aniseed/scripts/dep.sh Olical aniseed origin/master
