@@ -5,10 +5,10 @@
 ; rename APIs
 (def- core vim.fn)
 (def- api vim.api)
-(def- sys-loop vim.loop)
 
-; store a filesystem event for the file that calls this
-(def fs (vim.loop.new_fs_event))
+;; Key -- a table of file management events
+;; Structure: {file-name {:fs fs-event}}
+(def id {})
 
 ; FN - Truncate the filename of the current file
 ; $output - returns truncated filename
@@ -16,5 +16,10 @@
   (local output (core.expand "%:~:."))
   output)
 
+;; FN -- full path name
+(defn name []
+  (core.expand "%:p"))
+
+;; FN -- raw file extension
 (defn extension []
   (core.expand "%:e"))

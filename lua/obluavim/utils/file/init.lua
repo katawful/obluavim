@@ -14,15 +14,17 @@ local core = vim.fn
 _2amodule_locals_2a["core"] = core
 local api = vim.api
 _2amodule_locals_2a["api"] = api
-local sys_loop = vim.loop
-_2amodule_locals_2a["sys-loop"] = sys_loop
-local fs = vim.loop.new_fs_event()
-do end (_2amodule_2a)["fs"] = fs
+local id = {}
+_2amodule_2a["id"] = id
 local function short_name()
   local output = core.expand("%:~:.")
   return output
 end
 _2amodule_2a["short-name"] = short_name
+local function name()
+  return core.expand("%:p")
+end
+_2amodule_2a["name"] = name
 local function extension()
   return core.expand("%:e")
 end
